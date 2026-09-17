@@ -1,0 +1,61 @@
+<div class="app-container">
+  <header class="app-header">
+    <h1 class="header-title">
+      <span *ngIf="activeView === 'ai'">Principles of Management</span>
+      <span *ngIf="activeView === 'shakespeare'">WilliamShakespeare </span>
+      <span *ngIf="activeView === 'hamlet'">Hamlet</span>
+      <span *ngIf="activeView === 'german'">German Hamlet</span>
+      <span class="header-bookmark" (click)="switchView()">
+        <i class="fas fa-book"></i>
+      </span>
+    </h1>
+  </header>
+  <div class="content-wrapper">
+    <div class="page-content" *ngIf="activeView === 'ai'">
+      <app-comp2></app-comp2>
+    </div>
+    <div class="page-content" *ngIf="activeView === 'shakespeare'">
+      <app-dual-view-content
+        [chartData1]="shakespeareChartData1"
+        [chartData2]="shakespeareChartData2"
+        [queryResults1]="shakespeareQueryResults1"
+        [queryResults2]="shakespeareQueryResults2"
+        [pdfSource1]="shakespearePdfSource1"
+        [pdfSource2]="shakespearePdfSource2"
+        [questions]="shakespeareQuestions">
+      </app-dual-view-content>
+    </div>
+    <div class="page-content" *ngIf="activeView === 'hamlet'">
+      <app-hamlet-triple-view
+        [chartData1]="hamletChartData1"
+        [chartData2]="hamletChartData2"
+        [chartData3]="hamletChartData3"
+        [queryResults1]="hamletQueryResults1"
+        [queryResults2]="hamletQueryResults2"
+        [queryResults3]="hamletQueryResults3"
+        [pdfSource1]="hamletPdfSource1"
+        [pdfSource2]="hamletPdfSource2"
+        [pdfSource3]="hamletPdfSource3"
+        [questions]="hamletQuestions">
+      </app-hamlet-triple-view>
+    </div>
+    <div class="page-content" *ngIf="activeView === 'german'">
+      <app-dual-view-content
+        [chartData1]="hamletChartData1"
+        [chartData2]="germanChartData"
+        [queryResults1]="hamletQueryResults1"
+        [queryResults2]="germanQueryResults"
+        [pdfSource1]="hamletPdfSource1"
+        [pdfSource2]="germanPdfSource"
+        [questions]="hamletQuestions"
+        [apiQuestions1]="hamletQuestions"
+        [apiQuestions2]="germanQuestions"
+        queryApi1="hamlet"
+        queryApi2="german"
+        versionLabel1="English Hamlet"
+        versionLabel2="German Hamlet"
+        [showSecondVersionInitially]="true">
+      </app-dual-view-content>
+    </div>
+  </div>
+</div>

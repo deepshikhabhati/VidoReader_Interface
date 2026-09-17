@@ -1,0 +1,20 @@
+# Dependencies and build
+/node_modules
+/.angular
+/dist
+/tmp
+/out-tsc
+
+# IDE and OS
+.DS_Store
+.idea
+.vscode
+*.swp
+
+# Secrets and local env
+.env
+.env.*
+*.pem
+
+# Archives not part of the app
+*.zip

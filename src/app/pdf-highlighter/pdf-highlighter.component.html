@@ -1,0 +1,13 @@
+<!-- Trigger -->
+<!-- <button (click)="openPdf(text)">Open PDF</button> -->
+
+<!-- Modal: only render iframe when pdfUrl is set so clearing then resetting pdfUrl forces a full reload and new highlight -->
+<div *ngIf="showPdf">
+    <iframe
+      *ngIf="pdfUrl"
+      [src]="sanitizer.bypassSecurityTrustResourceUrl(pdfUrl)"
+      width="100%"
+      height="800"
+      style="border: none;"
+    ></iframe>
+</div>
