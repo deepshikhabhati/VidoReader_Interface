@@ -374,7 +374,7 @@ public askQuery(query: any,source: any, options?: { german?: boolean; language?:
     german: options?.german || false,
     language: options?.language || ''
   }
-  return this.http.post(API_BASE + '/ask-ai',request)
+  return this.http.post(API_BASE + '/ask-ai/',request)
 }
 
 /**
