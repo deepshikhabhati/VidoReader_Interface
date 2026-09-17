@@ -3,8 +3,9 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { OpenaiService } from '../openai.service';
 import { summary } from 'src/assets/summary';
 import * as pdfjsLib from 'pdfjs-dist';
+import { assetUrl } from '../api.config';
 
-(pdfjsLib as any).GlobalWorkerOptions.workerSrc = '/assets/pdfjs/pdf.worker.min.js';
+(pdfjsLib as any).GlobalWorkerOptions.workerSrc = assetUrl('assets/pdfjs/pdf.worker.min.js');
 
 @Component({
   selector: 'app-dual-view-content',
@@ -17,8 +18,8 @@ export class DualViewContentComponent implements OnInit, AfterViewChecked, OnCha
   @Input() chartData2: any = null;
   @Input() queryResults1: any[] = [];
   @Input() queryResults2: any[] = [];
-  @Input() pdfSource1: string = '/assets/WilliamShakespear1.pdf';
-  @Input() pdfSource2: string = '/assets/William_Shakespeare.pdf';
+  @Input() pdfSource1: string = assetUrl('assets/WilliamShakespear1.pdf');
+  @Input() pdfSource2: string = assetUrl('assets/William_Shakespeare.pdf');
   @Input() questions: string[] = []; // Optional: array of questions/queries
   @Input() apiQuestions1: string[] = [];
   @Input() apiQuestions2: string[] = [];

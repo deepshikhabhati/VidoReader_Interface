@@ -5,8 +5,9 @@ import { forkJoin, of } from 'rxjs';
 import { OpenaiService } from '../openai.service';
 import { summary } from 'src/assets/summary';
 import * as pdfjsLib from 'pdfjs-dist';
+import { assetUrl } from '../api.config';
 
-(pdfjsLib as any).GlobalWorkerOptions.workerSrc = '/assets/pdfjs/pdf.worker.min.js';
+(pdfjsLib as any).GlobalWorkerOptions.workerSrc = assetUrl('assets/pdfjs/pdf.worker.min.js');
 
 @Component({
   selector: 'app-hamlet-triple-view',
@@ -32,9 +33,9 @@ export class HamletTripleViewComponent implements OnInit, AfterViewChecked, OnCh
   @Input() queryResults1: any[] = [];
   @Input() queryResults2: any[] = [];
   @Input() queryResults3: any[] = [];
-  @Input() pdfSource1: string = '/assets/Hamlet.pdf';
-  @Input() pdfSource2: string = '/assets/Hamlet.pdf';
-  @Input() pdfSource3: string = '/assets/Hamlet.pdf';
+  @Input() pdfSource1: string = assetUrl('assets/Hamlet.pdf');
+  @Input() pdfSource2: string = assetUrl('assets/Hamlet.pdf');
+  @Input() pdfSource3: string = assetUrl('assets/Hamlet.pdf');
   @Input() questions: string[] = []; // Optional: array of questions/queries
   
   // Version-specific topic and chart data

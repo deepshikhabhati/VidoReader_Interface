@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OpenaiService } from '../openai.service';
+import { API_BASE } from '../api.config';
 
 import { TSVG } from 'src/assets/tscvg';
 import { images } from 'src/assets/adam';
@@ -9,6 +10,7 @@ import { images } from 'src/assets/adam';
   styleUrls: ['./comp6.component.css']
 })
 export class Comp6Component {
+  readonly imageBase = API_BASE;
   selectedQuery: any = [];
   selectedOp: any = '';
   data: any = TSVG;

@@ -5,8 +5,9 @@ import { OpenaiService } from '../openai.service';
 import { summary } from 'src/assets/summary';
 import { hamletQueryResults as defaultQueryResults } from 'src/assets/hamlet-queryResults';
 import * as pdfjsLib from 'pdfjs-dist';
+import { assetUrl } from '../api.config';
 
-(pdfjsLib as any).GlobalWorkerOptions.workerSrc = '/assets/pdfjs/pdf.worker.min.js';
+(pdfjsLib as any).GlobalWorkerOptions.workerSrc = assetUrl('assets/pdfjs/pdf.worker.min.js');
 
 @Component({
   selector: 'app-hamlet-content',
@@ -36,7 +37,7 @@ export class HamletContentComponent implements OnInit, AfterViewChecked {
   barChartValue2: any = []
   barChartValue3: any = []
   chatMessages: any[] = [];
-  @Input() pdfSource: string = '/assets/Hamlet.pdf';
+  @Input() pdfSource: string = assetUrl('assets/Hamlet.pdf');
   sizeScale: any;
 
   // Getter to return chat messages in reverse order (latest first)

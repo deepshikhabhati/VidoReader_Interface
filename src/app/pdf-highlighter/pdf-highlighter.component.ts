@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Input, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import * as pdfjsLib from 'pdfjs-dist';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { assetUrl } from '../api.config';
 
-// Set the workerSrc to a public path
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.0.0/pdf.worker.min.js';
+pdfjsLib.GlobalWorkerOptions.workerSrc = assetUrl('assets/pdfjs/pdf.worker.min.js');
 
 @Component({
   selector: 'app-pdf-highlighter',
@@ -13,7 +13,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs
 export class PdfHighlighterComponent implements OnChanges {
   @Input() text: any;
   @Input() nodeName: any;
-  @Input() pdfSource: string = '/assets/History_of_artificial_intelligence.pdf'; // Default PDF source
+  @Input() pdfSource: string = assetUrl('assets/History_of_artificial_intelligence.pdf');
   showPdf = false;
   // text: string = `in 1955, allen newell and future nobel laureate herbert a.`;
   text1: any = `In Greek mythology, Talos was a giant made of bronze who acted as guardian for the island of Crete.`
@@ -40,8 +40,8 @@ export class PdfHighlighterComponent implements OnChanges {
   }
 
   openPdf(text: string) {
-    const pdfPath = this.pdfSource || '/assets/History_of_artificial_intelligence.pdf';
-    const viewerHtml = '/assets/pdfjs/web/viewer.html';
+    const pdfPath = assetUrl(this.pdfSource || 'assets/History_of_artificial_intelligence.pdf');
+    const viewerHtml = assetUrl('assets/pdfjs/web/viewer.html');
 
     // Preserve structure and spacing (newlines, citations like [242]) as in source. Normalize line endings and trim.
     let cleaned = (text || '')

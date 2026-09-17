@@ -13,7 +13,9 @@ import {
 import * as pdfjsLib from 'pdfjs-dist/build/pdf';
 import 'pdfjs-dist/build/pdf.worker.entry';
 
-(pdfjsLib as any).GlobalWorkerOptions.workerSrc = '/assets/pdfjs/pdf.worker.min.js';
+import { assetUrl } from '../api.config';
+
+(pdfjsLib as any).GlobalWorkerOptions.workerSrc = assetUrl('assets/pdfjs/pdf.worker.min.js');
 
 @Component({
   selector: 'app-pdf-popup',

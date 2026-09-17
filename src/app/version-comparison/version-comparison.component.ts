@@ -5,8 +5,9 @@ import { Version2 } from 'src/assets/Comp3_version2';
 import { OpenaiService } from '../openai.service';
 import { queryResults } from 'src/assets/Ai-QueryResults';
 import * as pdfjsLib from 'pdfjs-dist';
+import { assetUrl } from '../api.config';
 
-(pdfjsLib as any).GlobalWorkerOptions.workerSrc = '/assets/pdfjs/pdf.worker.min.js';
+(pdfjsLib as any).GlobalWorkerOptions.workerSrc = assetUrl('assets/pdfjs/pdf.worker.min.js');
 
 @Component({
   selector: 'app-version-comparison',
@@ -19,8 +20,8 @@ export class VersionComparisonComponent implements OnInit, AfterViewChecked {
   topicDataVersion2 = Version2.children;
   
   // PDF paths
-  pdfPath1 = '/assets/William Shakespeare _ Plays, Poems, Biography, Quotes, & Facts _ Britannica.pdf';
-  pdfPath2 = '/assets/William_Shakespeare.pdf';
+  pdfPath1 = assetUrl('assets/William Shakespeare _ Plays, Poems, Biography, Quotes, & Facts _ Britannica.pdf');
+  pdfPath2 = assetUrl('assets/William_Shakespeare.pdf');
   
   // Common properties (similar to main-content)
   intersection: any = 0;

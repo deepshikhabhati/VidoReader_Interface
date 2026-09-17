@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import { BehaviorSubject } from 'rxjs';
+import { API_BASE } from './api.config';
 @Injectable({
   providedIn: 'root'
 })
@@ -77,7 +78,7 @@ export class OpenaiService {
   }
 
   getHeatmapData(): Observable<any> {
-    // return this.http.post("http://127.0.0.1:8000/process_pdf/", {});
+    // return this.http.post(API_BASE + '/process_pdf/', {});
     let results: any = {
       "matrix": [
         [
@@ -132,7 +133,7 @@ export class OpenaiService {
       'content-type': 'application/pdf'
     }
 
-    this.http.post('http://127.0.0.1:8000/process_pdf',file,headers).subscribe((res: any) => console.log(res))
+    this.http.post(API_BASE + '/process_pdf',file,headers).subscribe((res: any) => console.log(res))
   }
 
   convertImageUrlToBase64(url: string): Promise<string> {
@@ -155,7 +156,7 @@ public sendPDF(file: File,query: any,table?: any) {
 
   const formData = new FormData();
     formData.append('file', file); 
-  return this.http.post('http://127.0.0.1:8000/upload-pdf/?query_value=' + table + '&model=' + query,formData,{ headers: {
+  return this.http.post(API_BASE + '/upload-pdf/?query_value=' + table + '&model=' + query,formData,{ headers: {
     "Accept": "application/pdf"
   },})
 }
@@ -166,7 +167,7 @@ compareSummaries(summaries: any[]): Observable<any> {
     text_b: summaries[1].content
   };
 
-  return this.http.post(`http://127.0.0.1:8000/compare-summaries`, payload);
+  return this.http.post(`${API_BASE}/compare-summaries`, payload);
 }
 
 getSummary(summaries: any[]): Observable<any> {
@@ -174,7 +175,7 @@ getSummary(summaries: any[]): Observable<any> {
     chunks:  summaries,
   };
 
-  return this.http.post(`http://127.0.0.1:8000/summarize`, payload);
+  return this.http.post(`${API_BASE}/summarize`, payload);
 }
 
 compareText(summaries: any[],query1: any,query2: any): Observable<any> {
@@ -185,11 +186,11 @@ compareText(summaries: any[],query1: any,query2: any): Observable<any> {
     chunk2: summaries[1].text
   };
 
-  return this.http.post(`http://127.0.0.1:8000/analyze`, payload);
+  return this.http.post(`${API_BASE}/analyze`, payload);
 }
 
 public getScatterPlotData() {
-  return this.http.get('http://127.0.0.1:8000/getScatter/')
+  return this.http.get(API_BASE + '/getScatter/')
 }
 
 public sendQuery(query: any,k?: any,model?: any) {
@@ -200,7 +201,7 @@ public sendQuery(query: any,k?: any,model?: any) {
     chunks: k
 
   }
-  return this.http.post('http://127.0.0.1:8000/find-similar/',request)
+  return this.http.post(API_BASE + '/find-similar/',request)
 }
 
 public sendQuery3(query: any,k?: any,model?: any) {
@@ -211,7 +212,7 @@ public sendQuery3(query: any,k?: any,model?: any) {
     chunks: k
 
   }
-  return this.http.post('https://fastapi-pl5q.onrender.com/find-similar-adam/',request)
+  return this.http.post(API_BASE + '/find-similar-adam/',request)
 }
 
 public sendQuery4(query: any,k?: any,model?: any) {
@@ -222,7 +223,7 @@ public sendQuery4(query: any,k?: any,model?: any) {
     chunks: k
 
   }
-  return this.http.post('http://127.0.0.1:8000/find-similar-AI/',request)
+  return this.http.post(API_BASE + '/find-similar-AI/',request)
 }
 
 public sendQueryGerman(query: any,k?: any,model?: any) {
@@ -230,7 +231,7 @@ public sendQueryGerman(query: any,k?: any,model?: any) {
     text: query,
     chunks: k
   }
-  return this.http.post('http://127.0.0.1:8000/find-similar-german-hamlet/',request)
+  return this.http.post(API_BASE + '/find-similar-german-hamlet/',request)
 }
 
 public sendQueryFullReduced(query: any,k?: any,model?: any) {
@@ -241,28 +242,28 @@ public sendQueryFullReduced(query: any,k?: any,model?: any) {
     chunks: k
 
   }
-  return this.http.post('http://127.0.0.1:8000/find-similar-full-reduced/',request)
+  return this.http.post(API_BASE + '/find-similar-full-reduced/',request)
 }
 
 public extract_paragraph(query: any) {
 
-  return this.http.get('http://127.0.0.1:8000/extract_paragraph?query='+ query)
+  return this.http.get(API_BASE + '/extract_paragraph?query='+ query)
 }
 
 
 public highlight_and_return_image(query: any) {
 
-  return this.http.get('http://127.0.0.1:8000/highlight_and_return_image?query='+ query)
+  return this.http.get(API_BASE + '/highlight_and_return_image?query='+ query)
 }
 
 public sendQueryNews(query: any,type?: any,k?: any) {
 
-  return this.http.get('http://127.0.0.1:8000/search?query='+ query)
+  return this.http.get(API_BASE + '/search?query='+ query)
 }
 
 public analyze(images: any,prompt?: any) {
 
-  return this.http.post<any>('http://127.0.0.1:8000/clipscore-and-entropy', {
+  return this.http.post<any>(API_BASE + '/clipscore-and-entropy', {
     images,
     prompt
   });
@@ -271,12 +272,12 @@ public analyze(images: any,prompt?: any) {
 }
 public sendQueryNews3(query: any,type?: any,k?: any) {
 
-  return this.http.get('http://127.0.0.1:8000/tsvgsearch?query='+ query +'&top_k=' + type)
+  return this.http.get(API_BASE + '/tsvgsearch?query='+ query +'&top_k=' + type)
 }
 
 public sendQueryNews4(query: any,k?: any,model?: any) {
 
-  return this.http.get('http://127.0.0.1:8000/tsvgsearch2?query1='+ query + '&query2=' + k + '&type=' + model)
+  return this.http.get(API_BASE + '/tsvgsearch2?query1='+ query + '&query2=' + k + '&type=' + model)
 }
 
 public getRelevance(query: any,chunk: any) {
@@ -284,7 +285,7 @@ public getRelevance(query: any,chunk: any) {
     chunk: chunk,
     query: query
   }
-  return this.http.post('http://127.0.0.1:8000/check-relevance/',request)
+  return this.http.post(API_BASE + '/check-relevance/',request)
 }
 
 public getBestPrompt(query: any,chunk: any) {
@@ -293,12 +294,12 @@ public getBestPrompt(query: any,chunk: any) {
     chunk: chunk,
     query: query
   }
-  return this.http.post('http://127.0.0.1:8000/generate-prompt/',request)
+  return this.http.post(API_BASE + '/generate-prompt/',request)
 }
 
 public sendQueryNews2(query: any,k?: any,model?: any) {
 
-  return this.http.get('http://127.0.0.1:8000/search2?query1='+ query + '&query2=' + k + '&type=' + model)
+  return this.http.get(API_BASE + '/search2?query1='+ query + '&query2=' + k + '&type=' + model)
 }
 
 public findFuzzy(query: any,query2?: any,chunks?: any,type1?: any) {
@@ -309,7 +310,7 @@ public findFuzzy(query: any,query2?: any,chunks?: any,type1?: any) {
     chunks: chunks,
     type: type1
   }
-  return this.http.post('http://127.0.0.1:8000/find-fuzzy/',request)
+  return this.http.post(API_BASE + '/find-fuzzy/',request)
 }
 public sendQuery2(query: any,k?: any,model?: any) {
 
@@ -319,34 +320,34 @@ public sendQuery2(query: any,k?: any,model?: any) {
     chunks:k
 
   }
-  return this.http.post('http://127.0.0.1:8000/find-similar2/',request)
+  return this.http.post(API_BASE + '/find-similar2/',request)
 }
 
 /** Hamlet Version 1: POST /find-similar-hamlet1 */
 public findSimilarHamlet1(text: string, chunks: number): Observable<any> {
-  return this.http.post('http://127.0.0.1:8000/find-similar-hamlet1', { text, chunks });
+  return this.http.post(API_BASE + '/find-similar-hamlet1', { text, chunks });
 }
 
 /** Hamlet Version 2: POST /find-similar-hamlet2 */
 public findSimilarHamlet2(text: string, chunks: number): Observable<any> {
-  return this.http.post('http://127.0.0.1:8000/find-similar-hamlet2', { text, chunks });
+  return this.http.post(API_BASE + '/find-similar-hamlet2', { text, chunks });
 }
 
 /** Hamlet Version 3: POST /find-similar-hamlet3 */
 public findSimilarHamlet3(text: string, chunks: number): Observable<any> {
-  return this.http.post('http://127.0.0.1:8000/find-similar-hamlet3', { text, chunks });
+  return this.http.post(API_BASE + '/find-similar-hamlet3', { text, chunks });
 }
 
 
 public findSummary(payload: any) {
 
-  return this.http.post('http://127.0.0.1:8000/summarize/',payload)
+  return this.http.post(API_BASE + '/summarize/',payload)
 }
 
 
 public extract_keywords(payload: any) {
 
-  return this.http.post('http://127.0.0.1:8000/extract_keywords/',payload)
+  return this.http.post(API_BASE + '/extract_keywords/',payload)
 }
 
 
@@ -362,7 +363,7 @@ public sendQueryfor3d(query: any,k: any,model: any) {
     table_name: k,
     model: model
   }
-  return this.http.post('http://127.0.0.1:8000/queryFor3D/',request)
+  return this.http.post(API_BASE + '/queryFor3D/',request)
 }
 
 public askQuery(query: any,source: any, options?: { german?: boolean; language?: string }) {
@@ -373,7 +374,7 @@ public askQuery(query: any,source: any, options?: { german?: boolean; language?:
     german: options?.german || false,
     language: options?.language || ''
   }
-  return this.http.post('http://127.0.0.1:8000/ask-ai/',request)
+  return this.http.post(API_BASE + '/ask-ai/',request)
 }
 
 /**
@@ -384,7 +385,7 @@ public askQuery(query: any,source: any, options?: { german?: boolean; language?:
  */
 public clusterAi(query: string, k: number, chunks: { name: string; value: string }[]): Observable<any> {
   const payload = { query, k, chunks };
-  return this.http.post('http://127.0.0.1:8000/cluster-ai', payload);
+  return this.http.post(API_BASE + '/cluster-ai', payload);
 }
 
 }

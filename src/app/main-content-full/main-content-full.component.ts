@@ -4,8 +4,9 @@ import { Full } from 'src/assets/Full';
 import { OpenaiService } from '../openai.service';
 import { FullQueryResult as queryResults } from 'src/assets/Full-queryResultts';
 import * as pdfjsLib from 'pdfjs-dist';
+import { assetUrl } from '../api.config';
 
-(pdfjsLib as any).GlobalWorkerOptions.workerSrc = '/assets/pdfjs/pdf.worker.min.js';
+(pdfjsLib as any).GlobalWorkerOptions.workerSrc = assetUrl('assets/pdfjs/pdf.worker.min.js');
 
 @Component({
   selector: 'app-main-content-full',
@@ -23,7 +24,7 @@ export class MainContentFullComponent implements OnInit, AfterViewChecked, After
   barChartValue3: any = []
   chatMessages: any[] = [];
   sizeScale: any;
-  pdfSource: string = '/assets/Full_reduced.pdf';
+  pdfSource: string = assetUrl('assets/Full_reduced.pdf');
   // Getter to return chat messages in reverse order (latest first)
   get reversedChatMessages(): any[] {
     return [...this.chatMessages].reverse();

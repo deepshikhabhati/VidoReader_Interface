@@ -18,6 +18,7 @@ import { hamletQueryResults2 } from 'src/assets/hamlet_version2_queryResults';
 import { hamletQueryResults3 } from 'src/assets/hamlet_version3_queryResults';
 import { german } from 'src/assets/german';
 import { german_queryresults } from 'src/assets/german_queryresults';
+import { assetUrl } from './api.config';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -55,12 +56,12 @@ export class AppComponent {
   hamletQueryResults3 = hamletQueryResults3;
   germanChartData = german;
   germanQueryResults = german_queryresults;
-  shakespearePdfSource2 = '/assets/WilliamShakespear1.pdf';
-  shakespearePdfSource1 = '/assets/William_Shakespeare.pdf';
-  hamletPdfSource1 = '/assets/Hamlet.pdf';
-  hamletPdfSource2 = '/assets/All-combined_searchable_docx.pdf';
-  hamletPdfSource3 = '/assets/SearchableText_Hamlet.pdf';
-  germanPdfSource = '/assets/GermanHamlet.pdf';
+  shakespearePdfSource2 = assetUrl('assets/WilliamShakespear1.pdf');
+  shakespearePdfSource1 = assetUrl('assets/William_Shakespeare.pdf');
+  hamletPdfSource1 = assetUrl('assets/Hamlet.pdf');
+  hamletPdfSource2 = assetUrl('assets/All-combined_searchable_docx.pdf');
+  hamletPdfSource3 = assetUrl('assets/SearchableText_Hamlet.pdf');
+  germanPdfSource = assetUrl('assets/GermanHamlet.pdf');
   shakespeareQuestions: string[] = [
     'When and where was William Shakespeare born?',
     "Who were Shakespeare's parents, and what is known about his family background?",

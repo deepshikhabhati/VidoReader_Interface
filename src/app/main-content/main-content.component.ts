@@ -5,8 +5,9 @@ import { OpenaiService } from '../openai.service';
 import { summary } from 'src/assets/summary';
 import { queryResults } from 'src/assets/Ai-QueryResults';
 import * as pdfjsLib from 'pdfjs-dist';
+import { assetUrl } from '../api.config';
 
-(pdfjsLib as any).GlobalWorkerOptions.workerSrc = '/assets/pdfjs/pdf.worker.min.js';
+(pdfjsLib as any).GlobalWorkerOptions.workerSrc = assetUrl('assets/pdfjs/pdf.worker.min.js');
 
 @Component({
   selector: 'app-main-content',
